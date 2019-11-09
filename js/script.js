@@ -36,3 +36,33 @@ function CreateGalleryItem() {
 }
 
 gallery.insertAdjacentHTML("afterbegin", CreateGalleryItem());
+
+/* Open Lightbox */
+
+gallery.addEventListener("click", openLightbox);
+
+const lightbox = document.querySelector(".js-lightbox");
+const lightboxImage = document.querySelector(".lightbox__image");
+
+function openLightbox(e) {
+  e.preventDefault();
+
+  const target = e.target;
+  const bigImgSrc = target.dataset.source;
+
+  lightbox.classList.add("is-open");
+  lightboxImage.src = bigImgSrc;
+}
+
+/* Close Lightbox */
+
+const lightboxButton = document.querySelector(
+  'button[data-action="close-lightbox"]'
+);
+
+lightboxButton.addEventListener("click", closeLightbox);
+
+function closeLightbox() {
+  lightbox.classList.remove("is-open");
+  lightboxImage.src = "";
+}
