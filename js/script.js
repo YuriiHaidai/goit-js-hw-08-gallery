@@ -4,38 +4,38 @@ import GalleryItems from "./gallery-items.js";
 
 const gallery = document.querySelector(".js-gallery");
 
-function CreateGalleryItem() {
+function CreateGalleryItems() {
   const arr = [];
 
-  const createLi = document.createElement("li");
-  const createA = document.createElement("a");
-  const createImg = document.createElement("img");
-  const createSpan = document.createElement("span");
-  const createI = document.createElement("i");
+  const elemLi = document.createElement("li");
+  const elemA = document.createElement("a");
+  const elemImg = document.createElement("img");
+  const elemSpan = document.createElement("span");
+  const elemI = document.createElement("i");
 
-  createLi.classList.add("gallery__item");
-  createA.classList.add("gallery__link");
-  createImg.classList.add("gallery__image");
-  createSpan.classList.add("gallery__icon");
-  createI.classList.add("material-icons");
+  elemLi.classList.add("gallery__item");
+  elemA.classList.add("gallery__link");
+  elemImg.classList.add("gallery__image");
+  elemSpan.classList.add("gallery__icon");
+  elemI.classList.add("material-icons");
 
-  createI.textContent = "zoom_out_map";
+  elemI.textContent = "zoom_out_map";
 
-  createLi.append(createA, createSpan);
-  createA.appendChild(createImg);
-  createSpan.appendChild(createI);
+  elemLi.append(elemA, elemSpan);
+  elemA.appendChild(elemImg);
+  elemSpan.appendChild(elemI);
 
   GalleryItems.forEach(item => {
-    createA.href = item.original;
-    createImg.src = item.preview;
-    createImg.alt = item.description;
-    createImg.dataset.source = item.original;
-    arr.push(createLi.outerHTML);
+    elemA.href = item.original;
+    elemImg.src = item.preview;
+    elemImg.alt = item.description;
+    elemImg.dataset.source = item.original;
+    arr.push(elemLi.outerHTML);
   });
   return arr.join("");
 }
 
-gallery.insertAdjacentHTML("afterbegin", CreateGalleryItem());
+gallery.insertAdjacentHTML("afterbegin", CreateGalleryItems());
 
 /* Open Lightbox */
 
