@@ -2,7 +2,12 @@
 
 import GalleryItems from "./gallery-items.js";
 
-const gallery = document.querySelector(".js-gallery");
+const refs = {
+  gallery: document.querySelector(".js-gallery"),
+  lightbox: document.querySelector(".js-lightbox"),
+  lightboxImage: document.querySelector(".lightbox__image"),
+  lightboxButton: document.querySelector('button[data-action="close-lightbox"]')
+};
 
 function CreateGalleryItems() {
   const arr = [];
@@ -35,14 +40,11 @@ function CreateGalleryItems() {
   return arr.join("");
 }
 
-gallery.insertAdjacentHTML("afterbegin", CreateGalleryItems());
+refs.gallery.insertAdjacentHTML("afterbegin", CreateGalleryItems());
 
 /* Open Lightbox */
 
-gallery.addEventListener("click", openLightbox);
-
-const lightbox = document.querySelector(".js-lightbox");
-const lightboxImage = document.querySelector(".lightbox__image");
+refs.gallery.addEventListener("click", openLightbox);
 
 function openLightbox(e) {
   e.preventDefault();
@@ -50,19 +52,15 @@ function openLightbox(e) {
   const target = e.target;
   const bigImgSrc = target.dataset.source;
 
-  lightbox.classList.add("is-open");
-  lightboxImage.src = bigImgSrc;
+  refs.lightbox.classList.add("is-open");
+  refs.lightboxImage.src = bigImgSrc;
 }
 
 /* Close Lightbox */
 
-const lightboxButton = document.querySelector(
-  'button[data-action="close-lightbox"]'
-);
-
-lightboxButton.addEventListener("click", closeLightbox);
+refs.lightboxButton.addEventListener("click", closeLightbox);
 
 function closeLightbox() {
-  lightbox.classList.remove("is-open");
-  lightboxImage.src = "";
+  refs.lightbox.classList.remove("is-open");
+  refs.lightboxImage.src = "";
 }
